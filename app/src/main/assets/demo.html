@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Android 和 JS 之间通信的Demo</title>
+    <link rel="stylesheet" type="text/css" href="main.css"/>
+    <script type="text/javascript">
+        function onLogin() {
+            var userName, passWord;
+            var userNameLabel = document.getElementById("userName");
+            var passWordLabel = document.getElementById("pwd");
+            userName = userNameLabel.value;
+            passWord = passWordLabel.value;
+            if (null == userName || userName == "") {
+                alert("请输入用户名")
+                return;
+            }
+
+            if(null == passWord || passWord == ""){
+                alert("请输入密码")
+                return;
+            }
+            //调用Android代码
+            window.android.onLogin(userName,passWord);
+        }
+
+        function loginResult() {
+            var result = "登录成功";
+            var resultLabel = document.getElementById("login_result");
+            resultLabel.innerHTML = "Android 调用了JS代码";
+            alert("Android 调用了JS代码");
+            //return result;
+        }
+
+
+
+
+
+    </script>
+</head>
+<body>
+<h4>Android 和 JS 之间通信的Demo</h4>
+<hr/>
+<div>
+    <div>
+        名字: <input type="text" id="userName"><br/><br/>
+        密码: <input type="password" id="pwd"><br/><br/>
+
+        <button type="button" onclick="onLogin()">登录</button>
+        </form>
+    </div>
+    <p id="login_result"></p>
+</div>
+
+</body>
+</html>
